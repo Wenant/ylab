@@ -1,0 +1,4 @@
+package ru.wenant.repository;
+
+public class UserRepository {
+}
