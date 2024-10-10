@@ -4,7 +4,9 @@ import ru.wenant.dto.UserDTO;
 import ru.wenant.in.UserInputReader;
 import ru.wenant.repository.UserRepository;
 import ru.wenant.repository.impl.UserRepositoryImpl;
+import ru.wenant.service.AuthService;
 import ru.wenant.service.UserService;
+import ru.wenant.service.impl.AuthServiceImpl;
 import ru.wenant.service.impl.UserServiceImpl;
 
 import java.util.Scanner;
@@ -13,6 +15,7 @@ public class StartMenu {
     private static final Scanner scanner = new Scanner(System.in);
     private static final UserRepository userRepository = new UserRepositoryImpl();
     private static final UserService userService = new UserServiceImpl(userRepository);
+    private static final AuthService authService = new AuthServiceImpl(userRepository);
     static UserInputReader reader = new UserInputReader(scanner);
 
     public static void run() {
@@ -44,12 +47,12 @@ public class StartMenu {
         System.out.println("\n Registration");
         System.out.print("Enter your email: ");
         String email = reader.readEmail();
-        System.out.print("Enter your username: ");
-        String username = reader.readString();
+        System.out.print("Enter your name: ");
+        String name = reader.readString();
         System.out.print("Enter your password: ");
         String password = reader.readString();
 
-        UserDTO user = new UserDTO(email, username, password);
+        UserDTO user = new UserDTO(name, email, password);
         try {
             userService.registerUser(user);
         } catch (IllegalArgumentException e) {
@@ -66,6 +69,17 @@ public class StartMenu {
         System.out.print("Enter your password: ");
         String password = reader.readString();
 
+        try {
+            UserDTO user = authService.authenticate(email, password);
+            showUserMenu(user);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
 
+
+    }
+    private static void showUserMenu(UserDTO user) {
+        UserMenu userMenu = new UserMenu();
+        userMenu.showMenu(user);
     }
 }

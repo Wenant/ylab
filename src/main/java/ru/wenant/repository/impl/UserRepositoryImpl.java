@@ -1,5 +1,6 @@
 package ru.wenant.repository.impl;
 
+import org.w3c.dom.ls.LSOutput;
 import ru.wenant.model.User;
 import ru.wenant.repository.UserRepository;
 
@@ -20,4 +21,11 @@ public class UserRepositoryImpl implements UserRepository {
     public boolean existsByEmail(String email) {
         return users.containsKey(email);
     }
+
+    @Override
+    public User findByEmail(String email) {
+        return users.get(email);
+    }
+
+
 }

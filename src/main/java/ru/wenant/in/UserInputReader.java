@@ -63,9 +63,9 @@ public class UserInputReader {
             if (EmailValidator.isValidEmail(email)) {
                 break;
             } else {
-                System.out.println("Invalid email. Please try again.");
+                System.out.println("Invalid email format. Please try again.");
             }
         }
-        return email;
+        return email.toLowerCase();
     }
 }

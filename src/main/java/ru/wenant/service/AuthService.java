@@ -4,5 +4,5 @@ import ru.wenant.dto.UserDTO;
 
 public interface AuthService {
 
-    UserDTO authenticateUser(UserDTO userDTO);
+    UserDTO authenticate(String email, String password);
 }
