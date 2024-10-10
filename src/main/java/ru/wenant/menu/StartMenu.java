@@ -11,9 +11,9 @@ import java.util.Scanner;
 
 public class StartMenu {
     private static final Scanner scanner = new Scanner(System.in);
-    static UserInputReader reader = new UserInputReader(scanner);
     private static final UserRepository userRepository = new UserRepositoryImpl();
     private static final UserService userService = new UserServiceImpl(userRepository);
+    static UserInputReader reader = new UserInputReader(scanner);
 
     public static void run() {
         while (true) {
@@ -41,7 +41,7 @@ public class StartMenu {
     }
 
     private static void register() {
-        System.out.println("Registration");
+        System.out.println("\n Registration");
         System.out.print("Enter your email: ");
         String email = reader.readEmail();
         System.out.print("Enter your username: ");
@@ -60,6 +60,12 @@ public class StartMenu {
     }
 
     private static void login() {
+        System.out.println("\n Login");
+        System.out.print("Enter your email: ");
+        String email = reader.readEmail();
+        System.out.print("Enter your password: ");
+        String password = reader.readString();
+
 
     }
 }

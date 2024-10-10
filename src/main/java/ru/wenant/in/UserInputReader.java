@@ -3,7 +3,6 @@ package ru.wenant.in;
 import lombok.AllArgsConstructor;
 import ru.wenant.util.EmailValidator;
 
-import java.sql.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -29,8 +28,6 @@ public class UserInputReader {
         }
         return input;
     }
-
-
 
 
     public int readInt() {
