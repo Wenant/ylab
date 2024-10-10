@@ -1,18 +1,19 @@
-package ru.wenant.model;
-
+package ru.wenant.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class UserDTO {
 
     private String name;
     private String email;
     private String password;
+
 }
