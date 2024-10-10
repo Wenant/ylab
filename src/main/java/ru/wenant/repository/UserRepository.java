@@ -9,4 +9,10 @@ public interface UserRepository {
     boolean existsByEmail(String email);
 
     User findByEmail(String email);
+
+    void deleteUser(User user);
+
+    void updateUser(User user);
+
+    void updateUser(String newEmail, User user);
 }

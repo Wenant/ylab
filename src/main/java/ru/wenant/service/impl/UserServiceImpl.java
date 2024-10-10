@@ -2,6 +2,7 @@ package ru.wenant.service.impl;
 
 import ru.wenant.dto.UserDTO;
 import ru.wenant.mapper.UserMapper;
+import ru.wenant.model.User;
 import ru.wenant.repository.UserRepository;
 import ru.wenant.service.UserService;
 
@@ -19,7 +20,7 @@ public class UserServiceImpl implements UserService {
         if (isEmailTaken(userEmail)) {
             throw new IllegalArgumentException("User with this email already exists.");
         } else {
-            var user = UserMapper.INSTANCE.userDTOToUser(userDTO);
+            var user = convertToUser(userDTO);
             userRepository.registerUser(user);
             System.out.println("User registered successfully");
         }
@@ -29,6 +30,32 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean isEmailTaken(String email) {
         return userRepository.existsByEmail(email);
+    }
+
+    @Override
+    public void updateUser(UserDTO userDTO) {
+        var user = convertToUser(userDTO);
+        userRepository.updateUser(user);
+    }
+
+    @Override
+    public void updateUser(String newEmail, UserDTO userDTO) {
+        if (isEmailTaken(newEmail)) {
+            throw new IllegalArgumentException("User with this email already exists.");
+        } else {
+            userRepository.updateUser(newEmail, convertToUser(userDTO));
+        }
+
+    }
+
+    @Override
+    public void deleteUser(UserDTO userDTO) {
+        var user = convertToUser(userDTO);
+        userRepository.deleteUser(user);
+    }
+
+    private User convertToUser(UserDTO userDTO) {
+        return UserMapper.INSTANCE.userDTOToUser(userDTO);
     }
 
 

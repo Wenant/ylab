@@ -78,8 +78,9 @@ public class StartMenu {
 
 
     }
+
     private static void showUserMenu(UserDTO user) {
-        UserMenu userMenu = new UserMenu();
+        UserMenu userMenu = new UserMenu(reader, userService);
         userMenu.showMenu(user);
     }
 }

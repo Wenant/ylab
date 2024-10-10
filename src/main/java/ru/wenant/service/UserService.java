@@ -8,6 +8,11 @@ public interface UserService {
 
     boolean isEmailTaken(String email);
 
+    void updateUser(UserDTO userDTO);
+
+    void updateUser(String newEmail, UserDTO userDTO);
+
+    void deleteUser(UserDTO userDTO);
 
 
 }

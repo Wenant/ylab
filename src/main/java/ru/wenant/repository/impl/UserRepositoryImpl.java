@@ -1,6 +1,5 @@
 package ru.wenant.repository.impl;
 
-import org.w3c.dom.ls.LSOutput;
 import ru.wenant.model.User;
 import ru.wenant.repository.UserRepository;
 
@@ -25,6 +24,23 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public User findByEmail(String email) {
         return users.get(email);
+    }
+
+    @Override
+    public void deleteUser(User user) {
+        users.remove(user.getEmail());
+    }
+
+    @Override
+    public void updateUser(User user) {
+        users.put(user.getEmail(), user);
+    }
+
+    @Override
+    public void updateUser(String newEmail, User user) {
+        users.remove(user.getEmail());
+        user.setEmail(newEmail);
+        users.put(newEmail, user);
     }
 
 
