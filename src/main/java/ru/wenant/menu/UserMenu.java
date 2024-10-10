@@ -100,9 +100,8 @@ public class UserMenu {
                     System.out.println("Account deletion cancelled.");
                 }
             }
-            case 5 -> {
-                showMenu(user);
-            }
+            case 5 -> showMenu(user);
+
             default -> System.out.println("Invalid choice");
         }
 
